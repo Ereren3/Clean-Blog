@@ -1,8 +1,11 @@
-const express = require("express");
+const Post = require("../models/Post");
 
-exports.getIndexPage = (req, res) => {
+exports.getIndexPage = async (req, res) => {
+  const posts = await Post.find({});
+
   res.render("index", {
     pageName: "index",
+    posts
   });
 };
 

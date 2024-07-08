@@ -1,8 +1,12 @@
 const express = require("express");
 const mongoose = require("mongoose");
-const pageRoute = require("./routes/pageRoutes");
+const pageRoutes = require("./routes/pageRoutes");
+const postRoutes = require("./routes/postRoutes");
+
 
 const app = express();
+
+mongoose.connect("mongodb://127.0.0.1:27017/CleanBlog")
 
 app.set("view engine", "ejs");
 
@@ -10,8 +14,9 @@ app.use(express.static("public"));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-app.use("/", pageRoute);
+app.use("/", pageRoutes);
+app.use("/posts", postRoutes);
 
-app.listen("3000", () => {
+app.listen(3000, () => {
   console.log("Server is started!");
 });
