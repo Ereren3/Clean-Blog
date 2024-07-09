@@ -32,8 +32,8 @@
             </h2>
           </a>
           <p class="post-meta">Posted by
-            <a href="#">Start Bootstrap</a>
-            <%= posts[i].createDate %></p>
+            <a href="#"><%= posts[i].author %></a>
+            <%= posts[i].createDate.toLocaleDateString() %></p>
         </div>
         <% } %>
         <hr>
