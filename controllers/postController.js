@@ -1,4 +1,3 @@
-const { redirect } = require("express/lib/response");
 const Post = require("../models/Post");
 
 exports.addPost = async (req, res) => {
@@ -7,24 +6,25 @@ exports.addPost = async (req, res) => {
   res.redirect("/index");
 };
 
-exports.getPostPage = async (req,res) => {
+exports.getPostPage = async (req, res) => {
   const post = await Post.findById(req.params.id);
 
-  res.render("post",{
+  res.render("post", {
     pageName: "post",
-    post
-  })
-}
+    post,
+  });
+};
 
-exports.getPostEditPage = async (req,res) => {
+exports.getPostEditPage = async (req, res) => {
   const post = await Post.findById(req.params.id);
 
   res.render("postEdit", {
     pageName: "postEdit",
-    post
-  })
-}
-exports.editPost = async (req,res) => {
+    post,
+  });
+};
+
+exports.editPost = async (req, res) => {
   const post = await Post.findById(req.params.id);
 
   post.title = req.body.title;
@@ -33,5 +33,11 @@ exports.editPost = async (req,res) => {
 
   post.save();
 
-  res.redirect(`/index`);
+  res.redirect("/index");
+};
+
+exports.deletePost = async (req,res) => {
+  await Post.findByIdAndDelete(req.params.id); 
+
+  res.redirect("/index");
 }

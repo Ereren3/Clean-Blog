@@ -1,11 +1,24 @@
 const Post = require("../models/Post");
 
 exports.getIndexPage = async (req, res) => {
-  const posts = await Post.find({});
+
+  const page = req.query.page || 1;
+  const postPerPage = 4;
+  let i = 1;
+
+  const totalPhoto = await Post.find({}).countDocuments();
+
+  const posts =  await Post.find({})
+  .sort({createDate: 1})
+  .skip((page-1)*postPerPage)
+  .limit(postPerPage)
 
   res.render("index", {
     pageName: "index",
-    posts
+    current: page,
+    pageCount: Math.ceil(totalPhoto/postPerPage),
+    posts,
+    i
   });
 };
 
@@ -22,7 +35,7 @@ exports.getAboutPage = (req, res) => {
 };
 
 exports.getAddPostPage = (req, res) => {
-  res.render("add_post", {
-    pageName: "add_post",
+  res.render("addPost", {
+    pageName: "addPost",
   });
 };

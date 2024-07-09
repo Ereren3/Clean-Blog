@@ -40,8 +40,16 @@
         
         <!-- Pager -->
         <div class="clearfix">
-          <a class="btn btn-primary float-right" href="#">Older Posts &rarr;</a>
+           <% if(i < pageCount){ %>
+              <a class="btn btn-primary float-right" href="/?page=<%= ++i %>">&rarr;</a>
+              <a class="btn btn-primary float-right" href="/?page=<%= --i %>">&larr;</a>
+            <% } %>    
         </div>
+        <div class="clearfix">
+          
+             
+  
+       </div>
       </div>
     </div>
   </div>

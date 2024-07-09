@@ -53,6 +53,10 @@
           <div id="success"></div>
           <button type="submit" class="btn btn-primary" id="sendMessageButton">Send</button>
           <button type="button" class="btn btn-primary" id="editButton" style="background-color: tomato;" onclick="onClick()">Edit</button>
+          <a href="/posts/edit/<%= post._id %>?_method=DELETE">
+            <button type="button" class="btn btn-primary float-right" id="deleteButton" style="background-color: red;" >Delete</button>
+          </a>
+          
         </form>
       </div>
     </div>
